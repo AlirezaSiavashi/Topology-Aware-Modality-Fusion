@@ -1,0 +1,104 @@
+# ============================================================================
+#  M3-CoW  —  allow-list .gitignore
+#  This project directory holds ~1 TB of imaging data, preprocessed arrays and
+#  nnU-Net checkpoints next to the source code. Blacklisting is too risky here,
+#  so the default is "ignore everything" and only source/config is re-included.
+#  To commit a new file type, add a "!" line for it below.
+# ============================================================================
+# =========================
+# Claude
+# =========================
+.claude/
+# --- default: ignore every file -------------------------------------------
+*
+
+# --- but descend into directories so the rules below can match -------------
+!*/
+
+# --- source code -----------------------------------------------------------
+!*.py
+!*.sh
+!*.pyi
+
+# --- configuration / metadata ---------------------------------------------
+!*.yaml
+!*.yml
+!*.toml
+!*.cfg
+!*.ini
+!requirements*.txt
+!Dockerfile
+!Makefile
+!.gitignore
+!.gitattributes
+
+# --- documentation ---------------------------------------------------------
+!*.md
+!LICENSE*
+
+# --- figures for the paper/report (small, versioned on purpose) ------------
+!/figures/*.png
+!/figures/*.pdf
+
+# ============================================================================
+#  Hard excludes — these win over everything above.
+#  Never traverse or commit these trees, whatever they contain.
+# ============================================================================
+
+# raw + preprocessed imaging data
+/dataset/
+/preprocessed/
+/prepocessed_data/
+/veselverse_dataset/
+
+# nnU-Net training output, checkpoints, predictions, metric dumps
+/results/
+/predictions/
+/outputs/
+/evaluation/results/
+/cascade/roi_*/
+
+# rendered volumes / large visual dumps
+/visualizations/
+/preprocessing_vis/
+
+# run logs
+/logs/
+/training/*.log
+/evaluation/*.log
+*.log
+
+# python / editor / OS cruft
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.vscode/
+.idea/
+.DS_Store
+
+# virtual environments
+venv/
+.venv/
+env/
+aneur/
+nnunet_venv/
+
+# model weights & archives, wherever they appear
+*.pth
+*.pt
+*.ckpt
+*.onnx
+*.npz
+*.npy
+*.pkl
+*.h5
+*.nii
+*.nii.gz
+*.mha
+*.nrrd
+*.dcm
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.deb
